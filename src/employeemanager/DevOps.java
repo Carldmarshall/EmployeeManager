@@ -4,6 +4,7 @@ package employeemanager;
 import java.text.SimpleDateFormat;
 
 public class DevOps extends Employee {
+    private final int DEVOPS_BONUS = 1890;
 
     public DevOps(String name, int age, double hourlyRate, char gender, String birthDate, String department){
         super(name, age, hourlyRate, gender, birthDate, department);
@@ -13,7 +14,8 @@ public class DevOps extends Employee {
 
 
     @Override
-    void calculateSalary() {
-
+    public double getBonus() {
+        return super.calculateSalary()*7/100+DEVOPS_BONUS;
+        
     }
 }

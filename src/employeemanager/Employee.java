@@ -12,20 +12,20 @@ public abstract class Employee {
     private int age;
     private double hourlyRate;
     private char gender;
-    private double bonus;
     private String birthDate;
     private String department;
+   
 
     public Employee(String name, int age, double hourlyRate, char gender, String birthDate, String department) {
         this.name = name;
         this.age = age;
         this.hourlyRate = hourlyRate;
         this.gender = gender;
-        this.bonus = bonus;
         this.birthDate = birthDate;
         this.department = department;
         nEmployees++;
         this.id = nEmployees;
+        
     }
 
     public void setBirthDate(String birthDate) {
@@ -51,11 +51,21 @@ public abstract class Employee {
     public String getName() {
         return name;
     }
+    public abstract double getBonus();
+    public double getHourlyRate() {
+        return hourlyRate;
+    }
+     public double calculateSalary() {
+       
+            return getHourlyRate()*160;
+    
+
+    }
 
     @Override
     public String toString() {
         return "ID: " + id + " Employee: " + name + " Department: " + department + " Birthdate: " + birthDate.toString();
     }
 
-    abstract void calculateSalary ();
+   
 }
