@@ -2,6 +2,7 @@ package employeemanager;
 
 public abstract class Employee {
 
+    private final int MONTHLY_HOURS = 160;
     private static int nEmployees;
     private int id;
     private String name;
@@ -20,7 +21,6 @@ public abstract class Employee {
         this.department = department;
         nEmployees++;
         this.id = nEmployees;
-        
     }
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
@@ -43,12 +43,12 @@ public abstract class Employee {
     public String getName() {
         return name;
     }
-    public abstract double getBonus();
+    abstract double getBonus();
     public double getHourlyRate() {
         return hourlyRate;
     }
     public double calculateSalary() {
-            return getHourlyRate()*160;
+            return getHourlyRate()*MONTHLY_HOURS;
     }
     public char getGender() {
         return gender;
