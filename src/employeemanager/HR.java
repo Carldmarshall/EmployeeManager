@@ -1,5 +1,6 @@
 package employeemanager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -41,7 +42,7 @@ public class HR {
         }
         return false;
     }
-    public boolean updateEmployeeBirthdate(int id, Date date){
+    public boolean updateEmployeeBirthdate(int id, String date){
         try{
             for (Employee employee : employeeList) {
                 if(employee.getId() == id){
@@ -54,11 +55,22 @@ public class HR {
         }
         return false;
     }
-    public boolean updateEmployeeDepartment(int id, String newDepartment){
+    public boolean updateEmployeeDepartment(int id, int deparment){
         try{
             for (Employee employee : employeeList) {
                 if(employee.getId() == id){
-                    employee.setDepartment(newDepartment);
+                    switch (deparment){
+                        case 1:
+                            employee.setDepartment("DevOps");
+                            break;
+                        case 2:
+                            employee.setDepartment("Test");
+                            break;
+                        case 3:
+                            employee.setDepartment("Development");
+                            break;
+                    }
+
                     return true;
                 }
             }
@@ -67,7 +79,7 @@ public class HR {
         }
         return false;
     }
-    public boolean updateEmployeeDepartment(int id, double newSalary){
+    public boolean updateEmployeeSalary(int id, double newSalary){
         try{
             for (Employee employee : employeeList) {
                 if(employee.getId() == id){

@@ -13,10 +13,10 @@ public abstract class Employee {
     private double hourlyRate;
     private char gender;
     private double bonus;
-    private SimpleDateFormat birthDate;
+    private String birthDate;
     private String department;
 
-    public Employee(String name, int age, double hourlyRate, char gender, SimpleDateFormat birthDate, String department) {
+    public Employee(String name, int age, double hourlyRate, char gender, String birthDate, String department) {
         this.name = name;
         this.age = age;
         this.hourlyRate = hourlyRate;
@@ -28,7 +28,7 @@ public abstract class Employee {
         this.id = nEmployees;
     }
 
-    public void setBirthDate(SimpleDateFormat birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
     public void setName(String name) {
@@ -54,7 +54,7 @@ public abstract class Employee {
 
     @Override
     public String toString() {
-        return "ID: " + id + " Employee: " + name + " Department: " + department;
+        return "ID: " + id + " Employee: " + name + " Department: " + department + " Birthdate: " + birthDate.toString();
     }
 
     abstract void calculateSalary ();

@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
  */
 public class Tester extends Employee{
 
-    public Tester(String name, int age, double hourlyRate, char gender, SimpleDateFormat birthDate, String department){
+    public Tester(String name, int age, double hourlyRate, char gender, String birthDate, String department){
         super(name, age, hourlyRate, gender, birthDate, department);
         HR.registerEmployee(this);
     }
