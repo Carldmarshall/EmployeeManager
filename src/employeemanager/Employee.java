@@ -1,9 +1,8 @@
-
 package employeemanager;
 
 public abstract class Employee {
 
-    static int nEmployees;
+    private static int nEmployees;
     private int id;
     private String name;
     private int age;
@@ -11,7 +10,6 @@ public abstract class Employee {
     private char gender;
     private String birthDate;
     private String department;
-   
 
     public Employee(String name, int age, double hourlyRate, char gender, String birthDate, String department) {
         this.name = name;
@@ -24,7 +22,6 @@ public abstract class Employee {
         this.id = nEmployees;
         
     }
-
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
@@ -34,11 +31,9 @@ public abstract class Employee {
     public void setHourlyRate(double hourlyRate) {
         this.hourlyRate = hourlyRate;
     }
-
     public void setDepartment(String department) {
         this.department = department;
     }
-
     public String getDepartment() {
         return department;
     }
@@ -52,18 +47,14 @@ public abstract class Employee {
     public double getHourlyRate() {
         return hourlyRate;
     }
-     public double calculateSalary() {
+    public double calculateSalary() {
             return getHourlyRate()*160;
     }
-
     public char getGender() {
         return gender;
     }
-
     @Override
     public String toString() {
         return "ID: " + id + " Employee: " + name + " Department: " + department + " Birthdate: " + birthDate.toString() + " Bonus: " +  getBonus() + " Salary: " + calculateSalary();
     }
-
-   
 }

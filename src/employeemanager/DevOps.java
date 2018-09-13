@@ -1,7 +1,4 @@
-
 package employeemanager;
-
-import java.text.SimpleDateFormat;
 
 public class DevOps extends Employee {
     private final int DEVOPS_BONUS = 1890;
@@ -10,8 +7,6 @@ public class DevOps extends Employee {
         super(name, age, hourlyRate, gender, birthDate, department);
         HR.registerEmployee(this);
     }
-
-
 
     @Override
     public double getBonus() {

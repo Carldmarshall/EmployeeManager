@@ -1,4 +1,3 @@
-
 package employeemanager;
 
 import java.util.ArrayList;
@@ -19,7 +18,6 @@ public class EmployeeManager {
         Developer developer1 = new Developer("Developer1", 1, 132, 'F',  "1990-07-20", "Development");
         Developer developer2 = new Developer("Developer2", 1, 151, 'F',  "1990-07-20", "Development");
         Developer developer3 = new Developer("Developer3", 1, 156, 'F',  "1990-07-20", "Development");
-
 
         hr.displayAllEmployees();
         while(running){
@@ -43,7 +41,6 @@ public class EmployeeManager {
                     System.out.println("Wrong input!");
                     break;
             }
-
         }
         System.out.println("Exiting application...");
     }

@@ -1,11 +1,10 @@
 package employeemanager;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 public class HR {
+
     static ArrayList<Employee> employeeList = new ArrayList<>();
 
     public static boolean registerEmployee(Employee employee){
