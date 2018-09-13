@@ -5,10 +5,21 @@
  */
 package employeemanager;
 
+import java.text.SimpleDateFormat;
+
 /**
  *
  * @author cm
  */
 public class Developer extends Employee{
-    
+
+    public Developer(String name, int age, double hourlyRate, char gender, SimpleDateFormat birthDate, String department){
+        super(name, age, hourlyRate, gender, birthDate, department);
+        HR.registerEmployee(this);
+    }
+
+    @Override
+    void calculateSalary() {
+
+    }
 }

@@ -1,29 +1,61 @@
 
 package employeemanager;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public abstract class Employee {
-    
-    static int id;
 
-    public static int getId() {
-        return id;
-    }
+    static int nEmployees;
+    private int id;
     private String name;
-
-    public void setName(String name) {
-        this.name = name;
-    }
     private int age;
     private double hourlyRate;
     private char gender;
     private double bonus;
-    private Date birthDate;
+    private SimpleDateFormat birthDate;
+    private String department;
 
-    public void setBirthDate(Date birthDate) {
+    public Employee(String name, int age, double hourlyRate, char gender, SimpleDateFormat birthDate, String department) {
+        this.name = name;
+        this.age = age;
+        this.hourlyRate = hourlyRate;
+        this.gender = gender;
+        this.bonus = bonus;
+        this.birthDate = birthDate;
+        this.department = department;
+        nEmployees++;
+        this.id = nEmployees;
+    }
+
+    public void setBirthDate(SimpleDateFormat birthDate) {
         this.birthDate = birthDate;
     }
-    
+    public void setName(String name) {
+        this.name = name;
+    }
+    public void setHourlyRate(double hourlyRate) {
+        this.hourlyRate = hourlyRate;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+    public int getId() {
+        return id;
+    }
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + " Employee: " + name + " Department: " + department;
+    }
+
     abstract void calculateSalary ();
 }
