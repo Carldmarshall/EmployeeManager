@@ -8,6 +8,10 @@ public abstract class Employee {
         return id;
     }
     private String name;
+
+    public void setName(String name) {
+        this.name = name;
+    }
     private int age;
     private double hourlyRate;
     private char gender;
