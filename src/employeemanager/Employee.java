@@ -20,6 +20,10 @@ public abstract class Employee {
     private char gender;
     private double bonus;
     private Date birthDate;
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
     
     abstract void calculateSalary ();
 }
