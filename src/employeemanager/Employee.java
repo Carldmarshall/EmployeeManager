@@ -1,5 +1,8 @@
 
 package employeemanager;
+
+import java.util.Date;
+
 public abstract class Employee {
     
     static int id;
@@ -16,6 +19,7 @@ public abstract class Employee {
     private double hourlyRate;
     private char gender;
     private double bonus;
+    private Date birthDate;
     
     abstract void calculateSalary ();
 }
