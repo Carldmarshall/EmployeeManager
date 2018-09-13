@@ -92,13 +92,14 @@ public class HR {
         }
         return false;
     }
-    public Employee searchEmployeeByName(String name){
+    public ArrayList<Employee> searchEmployeeByName(String name){
+        ArrayList<Employee> foundEmployees = new ArrayList<>();
         for (Employee employee : employeeList) {
             if(employee.getName().equalsIgnoreCase(name)){
-                return employee;
+                foundEmployees.add(employee);
             }
         }
-        return null;
+        return foundEmployees;
     }
     public Employee searchEmployeeById(int id){
         for (Employee employee : employeeList) {
@@ -108,13 +109,14 @@ public class HR {
         }
         return null;
     }
-    public Employee searchEmployeeByDepartment(String department){
+    public ArrayList<Employee> searchEmployeeByDepartment(String department){
+        ArrayList<Employee> foundEmployees = new ArrayList<>();
         for (Employee employee : employeeList) {
-            if(employee.getDepartment()== department){
-                return employee;
+            if(employee.getDepartment().equals(department)){
+                foundEmployees.add(employee);
             }
         }
-        return null;
+        return foundEmployees;
     }
     public void displayAllEmployees(){
         for (Employee employee : employeeList) {

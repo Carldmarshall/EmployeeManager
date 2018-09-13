@@ -4,6 +4,7 @@ package employeemanager;
 import javafx.application.Application;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -87,6 +88,9 @@ public class EmployeeManager {
                 break;
             case 7:
                 searchEmployeeByName();
+                break;
+            case 8:
+                searchEmployeeById();
                 break;
             case 10:
                 displayAllEmployees();
@@ -187,13 +191,55 @@ public class EmployeeManager {
         sc.nextLine();
         System.out.println("Name: ");
         String name = sc.nextLine();
-        Employee employee = hr.searchEmployeeByName(name);
-        if(employee != null){
-            System.out.println("Found employee: " + employee.getName());
+        ArrayList<Employee> foundEmployees = hr.searchEmployeeByName(name);
+        if(foundEmployees.size() > 0){
+            for (Employee foundEmployee : foundEmployees) {
+                System.out.println("Found employee: " + foundEmployee.getName());
+            }
         } else{
             System.out.println("Couldnt find employee with name " + name);
         }
 
     }
-    
+    static void searchEmployeeById(){
+        sc.nextLine();
+        System.out.println("Id: ");
+        int id = sc.nextInt();
+        Employee employee = hr.searchEmployeeById(id);
+        if(employee != null){
+            System.out.println("Found employee: " + employee.getName());
+        } else{
+            System.out.println("Couldnt find employee with id " + id);
+        }
+
+    }
+    static void searchEmployeeByDepartment(){
+        sc.nextLine();
+        System.out.println("Department?\n" +
+                "1. DevOps\n" +
+                "2. Test\n" +
+                "3. Development");
+        System.out.print("Choice: ");
+        int department = sc.nextInt();
+        ArrayList<Employee> foundEmployees = null;
+        switch (department) {
+            case 1:
+                foundEmployees = hr.searchEmployeeByName("DevOps");
+                break;
+            case 2:
+                foundEmployees = hr.searchEmployeeByName("Test");
+                break;
+            case 3:
+                foundEmployees = hr.searchEmployeeByName("Development");
+                break;
+        }
+        if(foundEmployees != null){
+            for (Employee foundEmployee : foundEmployees) {
+                System.out.println("Found employee: " + foundEmployee.getName());
+            }
+        } else{
+            System.out.println("Couldnt find any employees in that department.");
+        }
+
+    }
 }
