@@ -56,10 +56,11 @@ public abstract class Employee {
         return hourlyRate;
     }
      public double calculateSalary() {
-       
             return getHourlyRate()*160;
-    
+    }
 
+    public char getGender() {
+        return gender;
     }
 
     @Override

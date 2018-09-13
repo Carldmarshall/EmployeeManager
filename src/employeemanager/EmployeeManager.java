@@ -6,23 +6,23 @@ import javafx.application.Application;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class EmployeeManager {
     static HR hr = new HR();
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        System.out.println("Test");
         boolean running = true;
-        Employee emp1 = new DevOps("DevOps1", 1, 1, 'M',  "1990-07-20", "DevOps");
-        Employee emp2 = new DevOps("DevOps2", 1, 1, 'M', "1990-07-20", "DevOps");
-        Employee emp3 = new DevOps("DevOps3", 1, 1, 'M', "1990-07-20", "DevOps");
-        Tester test1 = new Tester("Tester1", 1, 1, 'F',  "1990-07-20", "Test");
-        Tester test2 = new Tester("Tester2", 1, 1, 'F',  "1990-07-20", "Test");
-        Tester test3 = new Tester("Tester3", 1, 1, 'F',  "1990-07-20", "Test");
-        Developer developer1 = new Developer("Developer1", 1, 1, 'F',  "1990-07-20", "Development");
-        Developer developer2 = new Developer("Developer2", 1, 1, 'F',  "1990-07-20", "Development");
-        Developer developer3 = new Developer("Developer3", 1, 1, 'F',  "1990-07-20", "Development");
+        Employee emp1 = new DevOps("DevOps1", 1, 120, 'M',  "1990-07-20", "DevOps");
+        Employee emp2 = new DevOps("DevOps2", 1, 112, 'M', "1990-07-20", "DevOps");
+        Employee emp3 = new DevOps("DevOps3", 1, 84, 'M', "1990-07-20", "DevOps");
+        Tester test1 = new Tester("Tester1", 1, 122, 'F',  "1990-07-20", "Test");
+        Tester test2 = new Tester("Tester2", 1, 152, 'F',  "1990-07-20", "Test");
+        Tester test3 = new Tester("Tester3", 1, 321, 'F',  "1990-07-20", "Test");
+        Developer developer1 = new Developer("Developer1", 1, 132, 'F',  "1990-07-20", "Development");
+        Developer developer2 = new Developer("Developer2", 1, 151, 'F',  "1990-07-20", "Development");
+        Developer developer3 = new Developer("Developer3", 1, 156, 'F',  "1990-07-20", "Development");
 
 
         hr.displayAllEmployees();
@@ -42,13 +42,12 @@ public class EmployeeManager {
                     employeeStatitics();
                     break;
                 case 0:
-                    System.out.println("Exiting application.");
-                    System.exit(0);
+                    running = false;
                 default:
                     System.out.println("Wrong input!");
                     break;
             }
-
+            System.out.println("Exiting application...");
         }
     }
     static void employeeManagement(){
@@ -92,8 +91,12 @@ public class EmployeeManager {
             case 8:
                 searchEmployeeById();
                 break;
+            case 9:
+                searchEmployeeByDepartment();
+                break;
             case 10:
                 displayAllEmployees();
+                break;
             default:
                 break;
         }
@@ -109,6 +112,29 @@ public class EmployeeManager {
                 "0. Back to main menu.\n");
         System.out.print("Choice: ");
         int choice = sc.nextInt();
+        switch (choice){
+            case 1:
+                calculateSalary();
+                break;
+            case 2:
+                getMaxSalary();
+                break;
+            case 3:
+                getMinSalary();
+                break;
+            case 4:
+                getTotalBonus();
+                break;
+            case 5:
+                calculateGenderPercentage();
+                break;
+            case 6:
+                calculateGenderPercentagePerDepartment();
+                break;
+            case 0:
+                break;
+
+        }
     }
     static void registerEmployee(){
         System.out.println("Department?\n" +
@@ -203,7 +229,7 @@ public class EmployeeManager {
     }
     static void searchEmployeeById(){
         sc.nextLine();
-        System.out.println("Id: ");
+        System.out.print("Id: ");
         int id = sc.nextInt();
         Employee employee = hr.searchEmployeeById(id);
         if(employee != null){
@@ -224,21 +250,45 @@ public class EmployeeManager {
         ArrayList<Employee> foundEmployees = null;
         switch (department) {
             case 1:
-                foundEmployees = hr.searchEmployeeByName("DevOps");
+                foundEmployees = hr.searchEmployeeByDepartment("DevOps");
                 break;
             case 2:
-                foundEmployees = hr.searchEmployeeByName("Test");
+                foundEmployees = hr.searchEmployeeByDepartment("Test");
                 break;
             case 3:
-                foundEmployees = hr.searchEmployeeByName("Development");
+                foundEmployees = hr.searchEmployeeByDepartment("Development");
                 break;
         }
-        if(foundEmployees != null){
+        if(foundEmployees.size() > 0){
             for (Employee foundEmployee : foundEmployees) {
                 System.out.println("Found employee: " + foundEmployee.getName());
             }
         } else{
-            System.out.println("Couldnt find any employees in that department.");
+            System.out.println("Couldn't find any employees in that department.");
+        }
+
+    }
+    static void calculateSalary(){
+        System.out.println("Average monthly wage (without bonus): " + hr.calculateAverageWage());
+    }
+    static void getMaxSalary(){
+        System.out.println("Max salary is: " + hr.maxSalary());
+    }
+    static void getMinSalary(){
+        System.out.println("Min salary is: " + hr.minSalary());
+    }
+    static void getTotalBonus(){
+        System.out.println("Total bonus: " + (int) hr.calculateTotalBonus());
+    }
+    static void calculateGenderPercentage(){
+        System.out.println("Percentage of women: " + (int) hr.calculateGenderPercentage() + "%");
+    }
+    static void calculateGenderPercentagePerDepartment(){
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        hashMap = hr.calculateGenderPercentagePerDepartment();
+
+        for (String s : hashMap.keySet()) {
+            System.out.println("Department: " + s + " Percentage: " + hashMap.get(s) + "%");
         }
 
     }
