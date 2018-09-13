@@ -1,11 +1,7 @@
 
 package employeemanager;
 
-import javafx.application.Application;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -47,8 +43,9 @@ public class EmployeeManager {
                     System.out.println("Wrong input!");
                     break;
             }
-            System.out.println("Exiting application...");
+
         }
+        System.out.println("Exiting application...");
     }
     static void employeeManagement(){
 

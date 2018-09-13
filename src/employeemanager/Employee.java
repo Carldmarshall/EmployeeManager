@@ -1,9 +1,6 @@
 
 package employeemanager;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public abstract class Employee {
 
     static int nEmployees;
@@ -65,7 +62,7 @@ public abstract class Employee {
 
     @Override
     public String toString() {
-        return "ID: " + id + " Employee: " + name + " Department: " + department + " Birthdate: " + birthDate.toString();
+        return "ID: " + id + " Employee: " + name + " Department: " + department + " Birthdate: " + birthDate.toString() + " Bonus: " +  getBonus() + " Salary: " + calculateSalary();
     }
 
    
