@@ -2,7 +2,7 @@ package employeemanager;
 
 public abstract class Employee {
 
-    private final int MONTHLY_HOURS = 160;
+    private final int MONTHLY_HOURS = 166;
     private static int nEmployees;
     private int id;
     private String name;
@@ -10,15 +10,15 @@ public abstract class Employee {
     private double hourlyRate;
     private char gender;
     private String birthDate;
-    private String department;
+    //private String department;
 
-    public Employee(String name, int age, double hourlyRate, char gender, String birthDate, String department) {
+    public Employee(String name, int age, double hourlyRate, char gender, String birthDate) {
         this.name = name;
         this.age = age;
         this.hourlyRate = hourlyRate;
         this.gender = gender;
         this.birthDate = birthDate;
-        this.department = department;
+        //this.department = department;
         nEmployees++;
         this.id = nEmployees;
     }
@@ -31,12 +31,12 @@ public abstract class Employee {
     public void setHourlyRate(double hourlyRate) {
         this.hourlyRate = hourlyRate;
     }
-    public void setDepartment(String department) {
-        this.department = department;
-    }
-    public String getDepartment() {
-        return department;
-    }
+//    public void setDepartment(String department) {
+//        this.department = department;
+//    }
+//    public String getDepartment() {
+//        return department;
+//    }
     public int getId() {
         return id;
     }
@@ -53,8 +53,21 @@ public abstract class Employee {
     public char getGender() {
         return gender;
     }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getBirthDate() {
+        return birthDate;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
-        return "ID: " + id + " Employee: " + name + " Department: " + department + " Birthdate: " + birthDate.toString() + " Bonus: " +  getBonus() + " Salary: " + calculateSalary();
+        return "ID: " + id + " Name: " + name + " Birthdate: " + birthDate.toString() + " Bonus: " +  getBonus() + " Salary: " + calculateSalary();
     }
 }

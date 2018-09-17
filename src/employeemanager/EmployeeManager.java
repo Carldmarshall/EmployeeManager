@@ -9,15 +9,15 @@ public class EmployeeManager {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         boolean running = true;
-        Employee emp1 = new DevOps("DevOps1", 1, 120, 'M',  "1990-07-20", "DevOps");
-        Employee emp2 = new DevOps("DevOps2", 1, 112, 'M', "1990-07-20", "DevOps");
-        Employee emp3 = new DevOps("DevOps3", 1, 84, 'M', "1990-07-20", "DevOps");
-        Tester test1 = new Tester("Tester1", 1, 122, 'F',  "1990-07-20", "Test");
-        Tester test2 = new Tester("Tester2", 1, 152, 'F',  "1990-07-20", "Test");
-        Tester test3 = new Tester("Tester3", 1, 321, 'F',  "1990-07-20", "Test");
-        Developer developer1 = new Developer("Developer1", 1, 132, 'F',  "1990-07-20", "Development");
-        Developer developer2 = new Developer("Developer2", 1, 151, 'F',  "1990-07-20", "Development");
-        Developer developer3 = new Developer("Developer3", 1, 156, 'F',  "1990-07-20", "Development");
+        Employee emp1 = new DevOps("DevOps1", 1, 120, 'M',  "1990-07-20");
+        Employee emp2 = new DevOps("DevOps2", 1, 112, 'M', "1990-07-20");
+        Employee emp3 = new DevOps("DevOps3", 1, 84, 'M', "1990-07-20");
+        Tester test1 = new Tester("Tester1", 1, 122, 'F',  "1990-07-20");
+        Tester test2 = new Tester("Tester2", 1, 152, 'F',  "1990-07-20");
+        Tester test3 = new Tester("Tester3", 1, 321, 'F',  "1990-07-20");
+        Developer developer1 = new Developer("Developer1", 1, 132, 'F',  "1990-07-20");
+        Developer developer2 = new Developer("Developer2", 1, 151, 'F',  "1990-07-20");
+        Developer developer3 = new Developer("Developer3", 1, 156, 'F',  "1990-07-20");
 
         hr.displayAllEmployees();
         while(running){
@@ -151,13 +151,13 @@ public class EmployeeManager {
         String birthDate = sc.nextLine();
         switch(department){
             case 1:
-                new DevOps(name, age, hourlyWage, gender.charAt(0), birthDate, "DevOps");
+                new DevOps(name, age, hourlyWage, gender.charAt(0), birthDate);
                 break;
             case 2:
-                new Tester(name, age, hourlyWage, gender.charAt(0), birthDate, "Test");
+                new Tester(name, age, hourlyWage, gender.charAt(0), birthDate);
                 break;
             case 3:
-                new Developer(name, age, hourlyWage, gender.charAt(0), birthDate, "Development");
+                new Developer(name, age, hourlyWage, gender.charAt(0), birthDate);
                 break;
             default:
                 break;

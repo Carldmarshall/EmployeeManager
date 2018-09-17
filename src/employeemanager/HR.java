@@ -55,19 +55,27 @@ public class HR {
         }
         return false;
     }
-    public boolean updateEmployeeDepartment(int id, int deparment){
+    public boolean updateEmployeeDepartment(int id, int department){
         try{
             for (Employee employee : employeeList) {
                 if(employee.getId() == id){
-                    switch (deparment){
+                    switch (department){
+                        //1 for devops
                         case 1:
-                            employee.setDepartment("DevOps");
-                            break;
+                            employee = new DevOps(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
+                            deleteEmployee(id);
+                            employee.setId(id);
+                        //2 for Test
                         case 2:
-                            employee.setDepartment("Test");
+                            employee = new Tester(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
+                            deleteEmployee(id);
+                            employee.setId(id);
                             break;
+                        //3 for Development
                         case 3:
-                            employee.setDepartment("Development");
+                            employee = new Developer(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
+                            deleteEmployee(id);
+                            employee.setId(id);
                             break;
                     }
 
@@ -112,7 +120,11 @@ public class HR {
     public ArrayList<Employee> searchEmployeeByDepartment(String department){
         ArrayList<Employee> foundEmployees = new ArrayList<>();
         for (Employee employee : employeeList) {
-            if(employee.getDepartment().equals(department)){
+            if(department.equals("DevOps") && employee instanceof DevOps){
+                foundEmployees.add(employee);
+            }else if(department.equals("Tester") && employee instanceof Tester){
+                foundEmployees.add(employee);
+            }else if(department.equals("Developer") && employee instanceof Developer){
                 foundEmployees.add(employee);
             }
         }
