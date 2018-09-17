@@ -1,5 +1,6 @@
 package employeemanager;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ public class EmployeeManager {
     static Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         boolean running = true;
-        Employee emp1 = new DevOps("DevOps1", 1, 120, 'M',  "1990-07-20");
+        Employee emp1 = new DevOps("DevOps1", 1, 120, 'F',  "1990-07-20");
         Employee emp2 = new DevOps("DevOps2", 1, 112, 'M', "1990-07-20");
         Employee emp3 = new DevOps("DevOps3", 1, 84, 'M', "1990-07-20");
         Tester test1 = new Tester("Tester1", 1, 122, 'F',  "1990-07-20");
@@ -19,7 +20,7 @@ public class EmployeeManager {
         Developer developer2 = new Developer("Developer2", 1, 151, 'F',  "1990-07-20");
         Developer developer3 = new Developer("Developer3", 1, 156, 'F',  "1990-07-20");
 
-        hr.displayAllEmployees();
+        displayAllEmployees();
         while(running){
             System.out.println("What do you want do to?\n" +
                     "1. Enter Employee management.\n" +
@@ -165,7 +166,9 @@ public class EmployeeManager {
 
     }
     static void displayAllEmployees(){
-        hr.displayAllEmployees();
+        for (Employee employee : HR.employeeList) {
+            System.out.println(employee);
+        }
     }
     static void removeEmployee(){
         System.out.println("Id of employee to remove: ");
@@ -278,12 +281,9 @@ public class EmployeeManager {
         System.out.println("Percentage of women: " + (int) hr.calculateGenderPercentage() + "%");
     }
     static void calculateGenderPercentagePerDepartment(){
-        HashMap<String, Integer> hashMap = new HashMap<>();
-        hashMap = hr.calculateGenderPercentagePerDepartment();
-
-        for (String s : hashMap.keySet()) {
-            System.out.println("Department: " + s + " Percentage: " + hashMap.get(s) + "%");
+        var genderList = hr.calculateGenderPercentagePerDepartment();
+        for (String s :genderList) {
+            System.out.println(s);
         }
-
     }
 }

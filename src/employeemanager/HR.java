@@ -130,11 +130,6 @@ public class HR {
         }
         return foundEmployees;
     }
-    public void displayAllEmployees(){
-        for (Employee employee : employeeList) {
-            System.out.println(employee);
-        }
-    }
     public double calculateAverageWage(){
         double totalWage = 0;
         for (Employee employee : employeeList) {
@@ -168,36 +163,34 @@ public class HR {
         return totalBonus;
     }
     public double calculateGenderPercentage(){
-        double women = 0;
-        for (Employee employee : employeeList) {
-            if (employee.getGender() == 'F') women++;
-        }
-        return (women / employeeList.size()) * 100;
+        return (Tester.nWomen + Developer.nWomen + DevOps.nWomen / employeeList.size()) * 100;
     }
-    public HashMap<String, Integer> calculateGenderPercentagePerDepartment(){
-        HashMap<String, Integer> genderDepartment = new HashMap<>();
-        int menTester = 0;
-        int menDeveloper = 0;
-        int menDevOps = 0;
-        int nDevOps = 0;
-        int nDeveloper = 0;
-        int nTester = 0;
-        for (Employee employee : employeeList) {
-            if(employee instanceof Tester){
-                nTester++;
-                if(employee.getGender() == 'M') menTester++;
-            }else if(employee instanceof Developer){
-                nDeveloper++;
-                if(employee.getGender() == 'M') menDeveloper++;
-            }else if(employee instanceof DevOps){
-                nDevOps++;
-                if(employee.getGender() == 'M') menDevOps++;
-            }
-        }
-        genderDepartment.put("Tester",(menTester / nTester) * 100);
-        genderDepartment.put("Developer",(menDeveloper / nDeveloper) * 100);
-        genderDepartment.put("DevOps",(menDevOps / nDevOps) * 100);
-        return genderDepartment;
+    public ArrayList<String> calculateGenderPercentagePerDepartment(){
+        ArrayList<String> genderList = new ArrayList<>();
+        genderList.add("Tester | Men: " + genderPercentageTester() + "% Women: " + (100-genderPercentageTester()) + "%");
+        genderList.add("Developer | Men: " + genderPercentageDeveloper() + "% Women: " + (100-genderPercentageDeveloper()) + "%");
+        genderList.add("DevOps | Men: " + genderPercentageDevOps() + "% Women: " + (100-genderPercentageDevOps()) + "%");
+        return genderList;
     }
-
+    public int genderPercentageTester(){
+        try{
+            return Math.round(Tester.nWomen + Tester.nMen) / Tester.nMen;
+        } catch (ArithmeticException ex){
+            return 0;
+        }
+    }
+    public int genderPercentageDeveloper(){
+        try{
+            return Math.round(Developer.nWomen + Developer.nMen) / Developer.nMen;
+        } catch (ArithmeticException ex){
+            return 0;
+        }
+    }
+    public int genderPercentageDevOps(){
+        try{
+            return Math.round(DevOps.nWomen + DevOps.nMen) / DevOps.nMen;
+        } catch (ArithmeticException ex){
+            return 0;
+        }
+    }
 }

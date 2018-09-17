@@ -53,21 +53,18 @@ public abstract class Employee {
     public char getGender() {
         return gender;
     }
-
     public int getAge() {
         return age;
     }
-
     public String getBirthDate() {
         return birthDate;
     }
-
     public void setId(int id) {
         this.id = id;
     }
-
     @Override
     public String toString() {
         return "ID: " + id + " Name: " + name + " Birthdate: " + birthDate.toString() + " Bonus: " +  getBonus() + " Salary: " + calculateSalary();
     }
+    abstract void manOrWoman(char gender);
 }
