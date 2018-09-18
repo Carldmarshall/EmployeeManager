@@ -1,5 +1,7 @@
+//Package
 package employeemanager;
 
+//Start of class
 public abstract class Employee {
 
     private final int MONTHLY_HOURS = 166;
@@ -10,7 +12,6 @@ public abstract class Employee {
     private double hourlyRate;
     private char gender;
     private String birthDate;
-    //private String department;
 
     public Employee(String name, int age, double hourlyRate, char gender, String birthDate) {
         this.name = name;
@@ -18,10 +19,11 @@ public abstract class Employee {
         this.hourlyRate = hourlyRate;
         this.gender = gender;
         this.birthDate = birthDate;
-        //this.department = department;
         nEmployees++;
         this.id = nEmployees;
     }
+
+    //Setters
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
@@ -31,24 +33,19 @@ public abstract class Employee {
     public void setHourlyRate(double hourlyRate) {
         this.hourlyRate = hourlyRate;
     }
-//    public void setDepartment(String department) {
-//        this.department = department;
-//    }
-//    public String getDepartment() {
-//        return department;
-//    }
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    //Getters
     public int getId() {
         return id;
     }
     public String getName() {
         return name;
     }
-    abstract double getBonus();
     public double getHourlyRate() {
         return hourlyRate;
-    }
-    public double calculateSalary() {
-            return getHourlyRate()*MONTHLY_HOURS;
     }
     public char getGender() {
         return gender;
@@ -59,12 +56,20 @@ public abstract class Employee {
     public String getBirthDate() {
         return birthDate;
     }
-    public void setId(int id) {
-        this.id = id;
-    }
+
+    //Override methods
     @Override
     public String toString() {
-        return "ID: " + id + " Name: " + name + " Birthdate: " + birthDate.toString() + " Bonus: " +  getBonus() + " Salary: " + calculateSalary();
+        return "ID: " + id + " Name: " + name + " Birthdate: " + birthDate.toString() + " Bonus: " +  (int)getBonus() + " Salary: " + calculateSalary();
     }
+
+    //Abstract mehods
+    abstract double getBonus();
     abstract void manOrWoman(char gender);
+
+    //Other methods
+    public double calculateSalary() {
+        return getHourlyRate()*MONTHLY_HOURS;
+    }
+
 }

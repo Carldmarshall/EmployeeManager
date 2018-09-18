@@ -1,5 +1,7 @@
+//Package
 package employeemanager;
 
+//Start of class
 public class DevOps extends Employee {
     private final int DEVOPS_BONUS = 1890;
     public static int nMen = 0;
@@ -8,9 +10,14 @@ public class DevOps extends Employee {
     public DevOps(String name, int age, double hourlyRate, char gender, String birthDate){
         super(name, age, hourlyRate, gender, birthDate);
         manOrWoman(gender);
-        HR.registerEmployee(this);
     }
 
+    //Getters
+    public static int getTotalOfDevOps(){
+        return nMen + nWomen;
+    }
+
+    //Override methods
     @Override
     public double getBonus() {
         return super.calculateSalary()*7/100+DEVOPS_BONUS;
@@ -28,4 +35,6 @@ public class DevOps extends Employee {
             nMen++;
         }
     }
+
+    //Other methods
 }

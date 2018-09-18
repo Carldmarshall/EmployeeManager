@@ -1,13 +1,15 @@
+//Package
 package employeemanager;
 
+//Imports
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class HR {
 
+    //Instantiate a new ArrayList that holds employee references.
     static ArrayList<Employee> employeeList = new ArrayList<>();
-
-    public static boolean registerEmployee(Employee employee){
+    //Register new employee by adding it to the arraylist. Returns true if everything is ok & false if something went wrong.
+    boolean registerEmployee(Employee employee){
         try{
             employeeList.add(employee);
             return true;
@@ -16,7 +18,8 @@ public class HR {
         }
         return false;
     }
-    public boolean deleteEmployee(int id){
+    //Delete an employee from the arraylist based on id. Returns true if everything is ok & false if something went wrong.
+    boolean removeEmployee(int id){
         try{
             for (Employee employee : employeeList) {
                 if(employee.getId() == id){
@@ -29,7 +32,8 @@ public class HR {
         }
         return false;
     }
-    public boolean updateEmployeeName(int id, String newName){
+    //Update name attribute of employee based on id. Returns true if everything is ok & false if something went wrong.
+    boolean updateEmployeeName(int id, String newName){
         try{
             for (Employee employee : employeeList) {
                 if(employee.getId() == id){
@@ -42,7 +46,8 @@ public class HR {
         }
         return false;
     }
-    public boolean updateEmployeeBirthdate(int id, String date){
+    //Update birthdate attribute of employee based on id. Returns true if everything is ok & false if something went wrong.
+    boolean updateEmployeeBirthdate(int id, String date){
         try{
             for (Employee employee : employeeList) {
                 if(employee.getId() == id){
@@ -55,7 +60,8 @@ public class HR {
         }
         return false;
     }
-    public boolean updateEmployeeDepartment(int id, int department){
+    //Updates department of employee by creating a new employee object and deleting the old one from the arraylist.
+    boolean updateEmployeeDepartment(int id, int department){
         try{
             for (Employee employee : employeeList) {
                 if(employee.getId() == id){
@@ -63,18 +69,18 @@ public class HR {
                         //1 for devops
                         case 1:
                             employee = new DevOps(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
-                            deleteEmployee(id);
+                            removeEmployee(id);
                             employee.setId(id);
                         //2 for Test
                         case 2:
                             employee = new Tester(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
-                            deleteEmployee(id);
+                            removeEmployee(id);
                             employee.setId(id);
                             break;
                         //3 for Development
                         case 3:
                             employee = new Developer(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
-                            deleteEmployee(id);
+                            removeEmployee(id);
                             employee.setId(id);
                             break;
                     }
@@ -87,7 +93,8 @@ public class HR {
         }
         return false;
     }
-    public boolean updateEmployeeSalary(int id, double newSalary){
+    //Updates the salary attribute of employee based on id. Returns true if everything is ok & false if something went wrong.
+    boolean updateEmployeeSalary(int id, double newSalary){
         try{
             for (Employee employee : employeeList) {
                 if(employee.getId() == id){
@@ -100,16 +107,21 @@ public class HR {
         }
         return false;
     }
-    public ArrayList<Employee> searchEmployeeByName(String name){
+    //Searches employee by name.
+    ArrayList<Employee> searchEmployeeByName(String name){
+        //Create new arraylist that will hold references to the found employees.
         ArrayList<Employee> foundEmployees = new ArrayList<>();
         for (Employee employee : employeeList) {
             if(employee.getName().equalsIgnoreCase(name)){
+                //Adds the found employee reference to new arraylist.
                 foundEmployees.add(employee);
             }
         }
+        //Returns all of the employees found.
         return foundEmployees;
     }
-    public Employee searchEmployeeById(int id){
+    //Searches for an employee based on id and returns it.
+    Employee searchEmployeeById(int id){
         for (Employee employee : employeeList) {
             if(employee.getId()== id){
                 return employee;
@@ -117,9 +129,12 @@ public class HR {
         }
         return null;
     }
-    public ArrayList<Employee> searchEmployeeByDepartment(String department){
+    //Returns all of the employee in a specific department.
+    ArrayList<Employee> searchEmployeeByDepartment(String department){
+        //Create new arraylist that will hold references to the found employees.
         ArrayList<Employee> foundEmployees = new ArrayList<>();
         for (Employee employee : employeeList) {
+            //If userinput matches subclass it will add the employee to the foundEmployees list.
             if(department.equals("DevOps") && employee instanceof DevOps){
                 foundEmployees.add(employee);
             }else if(department.equals("Tester") && employee instanceof Tester){
@@ -128,16 +143,19 @@ public class HR {
                 foundEmployees.add(employee);
             }
         }
+        //Returns the arraylist containing the found employees.
         return foundEmployees;
     }
-    public double calculateAverageWage(){
+    //Calculates the averagewage in the company.
+    double calculateAverageWage(){
         double totalWage = 0;
         for (Employee employee : employeeList) {
             totalWage += employee.calculateSalary();
         }
         return totalWage / employeeList.size();
     }
-    public double maxSalary(){
+    //Returns max salary in the company.
+    double maxSalary(){
         double maxSalary = 0;
         for (Employee employee : employeeList) {
             if(employee.calculateSalary() > maxSalary){
@@ -146,7 +164,9 @@ public class HR {
         }
         return maxSalary;
     }
-    public double minSalary(){
+    //Returns minimum salary in the company.
+    double minSalary(){
+        //Sets the first salary in the employeelist to minSalary and checks all remaining salaries against it.
         double minSalary = employeeList.get(0).calculateSalary();
         for (Employee employee : employeeList) {
             if(employee.calculateSalary() < minSalary){
@@ -155,40 +175,51 @@ public class HR {
         }
         return minSalary;
     }
-    public double calculateTotalBonus(){
+    //Returns total bonus in the company.
+    double calculateTotalBonus(){
         double totalBonus = 0;
         for (Employee employee : employeeList) {
             totalBonus += employee.getBonus();
         }
         return totalBonus;
     }
-    public double calculateGenderPercentage(){
-        return (Tester.nWomen + Developer.nWomen + DevOps.nWomen / employeeList.size()) * 100;
+    //Calculate and return total gender distribution.
+    double calculateGenderPercentage(){
+        try{
+            return ((Tester.nWomen + Developer.nWomen + DevOps.nWomen) / (double)employeeList.size() * 100);
+        }
+        catch(ArithmeticException ex){
+            return 0;
+        }
     }
-    public ArrayList<String> calculateGenderPercentagePerDepartment(){
+    //Returns arraylist of strings containing gender distribution in the different departments.
+    ArrayList<String> calculateGenderPercentagePerDepartment(){
         ArrayList<String> genderList = new ArrayList<>();
-        genderList.add("Tester | Men: " + genderPercentageTester() + "% Women: " + (100-genderPercentageTester()) + "%");
-        genderList.add("Developer | Men: " + genderPercentageDeveloper() + "% Women: " + (100-genderPercentageDeveloper()) + "%");
-        genderList.add("DevOps | Men: " + genderPercentageDevOps() + "% Women: " + (100-genderPercentageDevOps()) + "%");
+        genderList.add("Tester | Men: " + Math.round(genderPercentageTester()) + "% Women: " + (int)(100-genderPercentageTester()) + "%");
+        genderList.add("Developer | Men: " + Math.round(genderPercentageTester()) + "% Women: " + (int)(100-genderPercentageDeveloper()) + "%");
+        genderList.add("DevOps | Men: " + Math.round(genderPercentageTester()) + "% Women: " + (int)(100-genderPercentageDevOps()) + "%");
         return genderList;
     }
-    public int genderPercentageTester(){
+    //Calculates and returns gender distribution in test department.
+    double genderPercentageTester(){
         try{
-            return Math.round(Tester.nWomen + Tester.nMen) / Tester.nMen;
+            return (Tester.nMen / (double)Tester.getTotalTesters() * 100);
         } catch (ArithmeticException ex){
             return 0;
         }
     }
-    public int genderPercentageDeveloper(){
+    //Calculates and returns gender distribution in development department.
+    double genderPercentageDeveloper(){
         try{
-            return Math.round(Developer.nWomen + Developer.nMen) / Developer.nMen;
+            return (Developer.nMen / (double)Developer.getTotalOfDevelopers() * 100);
         } catch (ArithmeticException ex){
             return 0;
         }
     }
-    public int genderPercentageDevOps(){
+    //Calculates and returns gender distribution in devops department.
+    double genderPercentageDevOps(){
         try{
-            return Math.round(DevOps.nWomen + DevOps.nMen) / DevOps.nMen;
+            return (DevOps.nMen / (double)DevOps.getTotalOfDevOps() * 100);
         } catch (ArithmeticException ex){
             return 0;
         }

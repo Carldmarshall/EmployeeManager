@@ -1,26 +1,40 @@
+/*
+* Labb 2 - ITHS Javautvecklare 2018 - Stockholm
+* Made by: Pontus Paulsson & Carl M
+*
+*
+*
+*/
+
+
+//Package
 package employeemanager;
 
-import java.lang.reflect.Array;
+//Import
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
+//Start of class
 public class EmployeeManager {
+    //Instantiate a new HR object that will handle the employee management.
     static HR hr = new HR();
+    //Instantiate a new Scanner object to handle the programs input.
     static Scanner sc = new Scanner(System.in);
+    //Program starting point.
     public static void main(String[] args) {
         boolean running = true;
-        Employee emp1 = new DevOps("DevOps1", 1, 120, 'F',  "1990-07-20");
-        Employee emp2 = new DevOps("DevOps2", 1, 112, 'M', "1990-07-20");
-        Employee emp3 = new DevOps("DevOps3", 1, 84, 'M', "1990-07-20");
-        Tester test1 = new Tester("Tester1", 1, 122, 'F',  "1990-07-20");
-        Tester test2 = new Tester("Tester2", 1, 152, 'F',  "1990-07-20");
-        Tester test3 = new Tester("Tester3", 1, 321, 'F',  "1990-07-20");
-        Developer developer1 = new Developer("Developer1", 1, 132, 'F',  "1990-07-20");
-        Developer developer2 = new Developer("Developer2", 1, 151, 'F',  "1990-07-20");
-        Developer developer3 = new Developer("Developer3", 1, 156, 'F',  "1990-07-20");
+        registerEmployee(new DevOps("DevOps1", 1, 120, 'F',  "1990-07-20"));
+        registerEmployee(new DevOps("DevOps2", 1, 112, 'M', "1990-07-20"));
+        registerEmployee(new DevOps("DevOps3", 1, 84, 'M', "1990-07-20"));
+        registerEmployee(new Tester("Tester1", 1, 122, 'F',  "1990-07-20"));
+        registerEmployee(new Tester("Tester2", 1, 152, 'M',  "1990-07-20"));
+        registerEmployee(new Tester("Tester3", 1, 321, 'M',  "1990-07-20"));
+        registerEmployee(new Developer("Developer1", 1, 132, 'F',  "1990-07-20"));
+        registerEmployee(new Developer("Developer2", 1, 151, 'M',  "1990-07-20"));
+        registerEmployee(new Developer("Developer3", 1, 156, 'M',  "1990-07-20"));
 
         displayAllEmployees();
+        //Prints main menu
         while(running){
             System.out.println("What do you want do to?\n" +
                     "1. Enter Employee management.\n" +
@@ -28,7 +42,7 @@ public class EmployeeManager {
                     "0. Exit.");
             System.out.print("Choice: ");
             int choice = sc.nextInt();
-
+            //Switch-case to handle main menu input.
             switch (choice){
                 case 1:
                     employeeManagement();
@@ -45,6 +59,7 @@ public class EmployeeManager {
         }
         System.out.println("Exiting application...");
     }
+    //Displays menu for employeemanagement
     static void employeeManagement(){
 
         System.out.println("What do you want do to?\n" +
@@ -63,7 +78,7 @@ public class EmployeeManager {
         int choice = sc.nextInt();
         switch (choice){
             case 1:
-                registerEmployee();
+                createNewEmployee();
                 break;
             case 2:
                 removeEmployee();
@@ -96,14 +111,15 @@ public class EmployeeManager {
                 break;
         }
     }
+    //Displays menu for employeestatistics
     static void employeeStatitics(){
         System.out.println("What do you want do to?\n" +
                 "1. Average wage at the company.\n" +
                 "2. Maximum salary in the company.\n" +
                 "3. Minimum salary in the company.\n" +
                 "4. Total bonus.\n" +
-                "5. Women in percentage in the company.\n" +
-                "6. Men percentage of the various work role categories.\n" +
+                "5. Total genderdistribution in the company.\n" +
+                "6. Genderdistribution in departments.\n" +
                 "0. Back to main menu.\n");
         System.out.print("Choice: ");
         int choice = sc.nextInt();
@@ -131,66 +147,88 @@ public class EmployeeManager {
 
         }
     }
-    static void registerEmployee(){
+    //Calls the registerEmployee method with a new Employee object.
+    static void createNewEmployee(){
+        //Choose department
         System.out.println("Department?\n" +
                 "1. DevOps\n" +
                 "2. Test\n" +
                 "3. Development");
         int department = sc.nextInt(); // lägg till kontroll
         sc.nextLine();
-        System.out.println("Name: ");
+        //Input info about new employee
+        System.out.print("Name: ");
         String name = sc.nextLine();
-        System.out.println("Age: ");
+        System.out.print("Age: ");
         int age = sc.nextInt();
         sc.nextLine();
-        System.out.println("Hourly wage: ");
+        System.out.print("Hourly wage: ");
         double hourlyWage = sc.nextDouble();
         sc.nextLine();
-        System.out.println("Gender (M / F): ");
+        System.out.print("Gender (M / F): ");
         String gender = sc.nextLine();
-        System.out.println("Date (YYYY-MM-DD: ");
+        System.out.print("Date (YYYY-MM-DD: ");
         String birthDate = sc.nextLine();
+        //Switch-case to handle the different subclasses (departments)
         switch(department){
             case 1:
-                new DevOps(name, age, hourlyWage, gender.charAt(0), birthDate);
+                registerEmployee(new DevOps(name, age, hourlyWage, gender.charAt(0), birthDate));
                 break;
             case 2:
-                new Tester(name, age, hourlyWage, gender.charAt(0), birthDate);
+                registerEmployee(new Tester(name, age, hourlyWage, gender.charAt(0), birthDate));
                 break;
             case 3:
-                new Developer(name, age, hourlyWage, gender.charAt(0), birthDate);
+                registerEmployee(new Developer(name, age, hourlyWage, gender.charAt(0), birthDate));
                 break;
             default:
                 break;
         }
 
     }
+    //Display all employees
     static void displayAllEmployees(){
+        //Loops thru arraylist and calls .tostring method on all employee object and then prints the returned string to console.
         for (Employee employee : HR.employeeList) {
             System.out.println(employee);
         }
     }
+    //Removes an employeeobject from the arraylist.
     static void removeEmployee(){
         System.out.println("Id of employee to remove: ");
         int id = sc.nextInt();
-        hr.deleteEmployee(id); //TODO add if else
+        if(hr.removeEmployee(id)){
+            System.out.println("Employee successfully removed.");
+        }else{
+            System.out.println("Something went wrong when removing the employee. Please try again.");
+        }
     }
+    //Updates the name attribute of an employee.
     static void updateNameOfEmployee(){
         System.out.println("Id of employee to update: ");
         int id = sc.nextInt();
         sc.nextLine();
         System.out.println("New name: ");
         String newName = sc.nextLine();
-        hr.updateEmployeeName(id, newName); //TODO add if else
+        if(hr.updateEmployeeName(id, newName)){
+            System.out.println("Update successful.");
+        }else{
+            System.out.println("Something went wrong when updating employee. Please try again.");
+        }
     }
+    //Updates the birthday attribute of an employee.
     static void updateBirthdateOfEmployee(){
         System.out.println("Id of employee to update: ");
         int id = sc.nextInt();
         sc.nextLine();
         System.out.println("New birthdate: ");
         String newBirthDate = sc.nextLine();
-        hr.updateEmployeeBirthdate(id, newBirthDate); //TODO add if else
+        if(hr.updateEmployeeBirthdate(id, newBirthDate)){
+            System.out.println("Update successful.");
+        }else{
+            System.out.println("Something went wrong when updating employee. Please try again.");
+        }
     }
+    //Updates the department of an employee.
     static void updateDepartmentOfEmployee(){
         System.out.println("Id of employee to update: ");
         int id = sc.nextInt();
@@ -200,16 +238,26 @@ public class EmployeeManager {
                 "2. Test\n" +
                 "3. Development");
         int department = sc.nextInt();
-        hr.updateEmployeeDepartment(id, department); //TODO add if else
+        if(hr.updateEmployeeDepartment(id, department)){
+            System.out.println("Update successful.");
+        }else{
+            System.out.println("Something went wrong when updating employee. Please try again.");
+        }
     }
+    //Updates the salary attribute of the employee.
     static void updateSalaryOfEmployee(){
         System.out.println("Id of employee to update: ");
         int id = sc.nextInt();
         sc.nextLine();
         System.out.println("New salary: ");
-        String salary = sc.nextLine();
-        hr.updateEmployeeBirthdate(id, salary); //TODO add if else
+        double salary = sc.nextDouble();
+        if(hr.updateEmployeeSalary(id, salary)){
+            System.out.println("Update successful.");
+        }else{
+            System.out.println("Something went wrong when updating employee. Please try again.");
+        }
     }
+    //Search employee by name
     static void searchEmployeeByName(){
         sc.nextLine();
         System.out.println("Name: ");
@@ -224,6 +272,7 @@ public class EmployeeManager {
         }
 
     }
+    //Search employee by Id
     static void searchEmployeeById(){
         sc.nextLine();
         System.out.print("Id: ");
@@ -236,6 +285,7 @@ public class EmployeeManager {
         }
 
     }
+    //Search employee by department
     static void searchEmployeeByDepartment(){
         sc.nextLine();
         System.out.println("Department?\n" +
@@ -265,25 +315,39 @@ public class EmployeeManager {
         }
 
     }
+    //Prints average monthly wage without bonuses.
     static void calculateSalary(){
-        System.out.println("Average monthly wage (without bonus): " + hr.calculateAverageWage());
+        System.out.println("Average monthly wage (without bonus): " + (int)hr.calculateAverageWage() + "kr");
     }
+    //Prints maximum salary in the company.
     static void getMaxSalary(){
-        System.out.println("Max salary is: " + hr.maxSalary());
+        System.out.println("Max salary is: " + (int)hr.maxSalary() + "kr");
     }
+    //Prints minimum salary in the company.
     static void getMinSalary(){
-        System.out.println("Min salary is: " + hr.minSalary());
+        System.out.println("Min salary is: " + (int)hr.minSalary() + "kr");
     }
+    //Prints total bonus in the company
     static void getTotalBonus(){
-        System.out.println("Total bonus: " + (int) hr.calculateTotalBonus());
+        System.out.println("Total bonus: " + (int) hr.calculateTotalBonus() + "kr");
     }
+    //Prints gender distribution in the company.
     static void calculateGenderPercentage(){
-        System.out.println("Percentage of women: " + (int) hr.calculateGenderPercentage() + "%");
+        System.out.println("Women: " + (int)hr.calculateGenderPercentage() + "% Men: " + (100-(int)hr.calculateGenderPercentage() + "%"));
     }
+    //Prints gender distribution per department in the company.
     static void calculateGenderPercentagePerDepartment(){
-        var genderList = hr.calculateGenderPercentagePerDepartment();
+        ArrayList<String> genderList = hr.calculateGenderPercentagePerDepartment();
         for (String s :genderList) {
             System.out.println(s);
+        }
+    }
+    //Registers a new employee.
+    static void registerEmployee(Employee employee){
+        if(hr.registerEmployee(employee)){
+            System.out.println("Successfully registered new employee.");
+        }else{
+            System.out.println("Something went wrong with registering the new employee. Please try again.");
         }
     }
 }

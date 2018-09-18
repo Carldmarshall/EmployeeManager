@@ -1,5 +1,7 @@
+//Package
 package employeemanager;
 
+//Start of class
 public class Tester extends Employee{
     private final int TESTER_BONUS = 1207;
     public static int nMen = 0;
@@ -7,14 +9,14 @@ public class Tester extends Employee{
     public Tester(String name, int age, double hourlyRate, char gender, String birthDate){
         super(name, age, hourlyRate, gender, birthDate);
         manOrWoman(gender);
-        HR.registerEmployee(this);
     }
 
-    @Override
-    public double getBonus() {
-        return super.calculateSalary()*7/100+TESTER_BONUS;
+    //Getters
+    public static int getTotalTesters(){
+        return nMen + nWomen;
     }
 
+    //Override methods
     @Override
     public String toString() {
         return "Tester | " + super.toString();
@@ -27,4 +29,11 @@ public class Tester extends Employee{
             nMen++;
         }
     }
+    @Override
+    public double getBonus() {
+        return super.calculateSalary()*7/100+TESTER_BONUS;
+    }
+
+    //Other methods
+
 }

@@ -1,5 +1,7 @@
+//Package
 package employeemanager;
 
+//Start of class
 public class Developer extends Employee{
     private final int DEV_BONUS = 1500;
     public static int nMen = 0;
@@ -7,14 +9,18 @@ public class Developer extends Employee{
     public Developer(String name, int age, double hourlyRate, char gender, String birthDate){
         super(name, age, hourlyRate, gender, birthDate);
         manOrWoman(gender);
-        HR.registerEmployee(this);
     }
 
+    //Getters
+    public static int getTotalOfDevelopers(){
+        return nMen + nWomen;
+    }
+
+    //Override methods
     @Override
     public double getBonus() {
         return super.calculateSalary()*7/100+DEV_BONUS;
     }
-
     @Override
     public String toString() {
         return "Developer | " + super.toString();
@@ -27,4 +33,7 @@ public class Developer extends Employee{
             nMen++;
         }
     }
+
+    //Other methods
+
 }
