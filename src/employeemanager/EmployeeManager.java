@@ -196,6 +196,7 @@ public class EmployeeManager {
     static void removeEmployee(){
         System.out.println("Id of employee to remove: ");
         int id = sc.nextInt();
+        //Calls removeEmployee method of hr object.
         if(hr.removeEmployee(id)){
             System.out.println("Employee successfully removed.");
         }else{
@@ -209,6 +210,7 @@ public class EmployeeManager {
         sc.nextLine();
         System.out.println("New name: ");
         String newName = sc.nextLine();
+        //Calls updateEmployee of hr object
         if(hr.updateEmployeeName(id, newName)){
             System.out.println("Update successful.");
         }else{
@@ -222,6 +224,7 @@ public class EmployeeManager {
         sc.nextLine();
         System.out.println("New birthdate: ");
         String newBirthDate = sc.nextLine();
+        //Calls updateEmployeeBirthdate of hr object.
         if(hr.updateEmployeeBirthdate(id, newBirthDate)){
             System.out.println("Update successful.");
         }else{
@@ -238,6 +241,7 @@ public class EmployeeManager {
                 "2. Test\n" +
                 "3. Development");
         int department = sc.nextInt();
+        //Calls updateEmployeeDepartment in HR class.
         if(hr.updateEmployeeDepartment(id, department)){
             System.out.println("Update successful.");
         }else{
@@ -251,6 +255,7 @@ public class EmployeeManager {
         sc.nextLine();
         System.out.println("New salary: ");
         double salary = sc.nextDouble();
+        //Calls updateEmployeeSalary in HR class
         if(hr.updateEmployeeSalary(id, salary)){
             System.out.println("Update successful.");
         }else{
@@ -262,7 +267,9 @@ public class EmployeeManager {
         sc.nextLine();
         System.out.println("Name: ");
         String name = sc.nextLine();
+        //Create new arraylist and store the result from hr.searchEmployeeByName in it.
         ArrayList<Employee> foundEmployees = hr.searchEmployeeByName(name);
+        //If arraylist > 0, print out the arraylist.
         if(foundEmployees.size() > 0){
             for (Employee foundEmployee : foundEmployees) {
                 System.out.println("Found employee: " + foundEmployee.getName());
@@ -277,6 +284,7 @@ public class EmployeeManager {
         sc.nextLine();
         System.out.print("Id: ");
         int id = sc.nextInt();
+        //Calls searchEmployeeById of the hr object.
         Employee employee = hr.searchEmployeeById(id);
         if(employee != null){
             System.out.println("Found employee: " + employee.getName());
@@ -294,7 +302,9 @@ public class EmployeeManager {
                 "3. Development");
         System.out.print("Choice: ");
         int department = sc.nextInt();
+        //Declares a new ArrayList of type employee and sets it referencetype to null.
         ArrayList<Employee> foundEmployees = null;
+        //Switch-case that calls hr.SearchEmployeeDepartment and stores the result in foundEmployee ArrayList.
         switch (department) {
             case 1:
                 foundEmployees = hr.searchEmployeeByDepartment("DevOps");
@@ -306,6 +316,7 @@ public class EmployeeManager {
                 foundEmployees = hr.searchEmployeeByDepartment("Development");
                 break;
         }
+        //If arraylist > 0 print the arraylist.
         if(foundEmployees.size() > 0){
             for (Employee foundEmployee : foundEmployees) {
                 System.out.println("Found employee: " + foundEmployee.getName());
