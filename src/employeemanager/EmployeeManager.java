@@ -17,9 +17,9 @@ import java.util.Scanner;
 //Start of class
 public class EmployeeManager {
     //Instantiate a new HR object that will handle the employee management.
-    static HR hr = new HR();
+    private static HR hr = new HR();
     //Instantiate a new Scanner object to handle the programs input.
-    static Scanner sc = new Scanner(System.in);
+    private static Scanner sc = new Scanner(System.in);
     //Program starting point.
     public static void main(String[] args) {
         boolean running = true;
@@ -60,7 +60,7 @@ public class EmployeeManager {
         System.out.println("Exiting application...");
     }
     //Displays menu for employeemanagement
-    static void employeeManagement(){
+    private static void employeeManagement(){
 
         System.out.println("What do you want do to?\n" +
                 "1. Register employee.\n" +
@@ -112,7 +112,7 @@ public class EmployeeManager {
         }
     }
     //Displays menu for employeestatistics
-    static void employeeStatitics(){
+    private static void employeeStatitics(){
         System.out.println("What do you want do to?\n" +
                 "1. Average wage at the company.\n" +
                 "2. Maximum salary in the company.\n" +
@@ -148,7 +148,7 @@ public class EmployeeManager {
         }
     }
     //Calls the registerEmployee method with a new Employee object.
-    static void createNewEmployee(){
+    private static void createNewEmployee(){
         //Choose department
         System.out.println("Department?\n" +
                 "1. DevOps\n" +
@@ -186,14 +186,14 @@ public class EmployeeManager {
 
     }
     //Display all employees
-    static void displayAllEmployees(){
+    private static void displayAllEmployees(){
         //Loops thru arraylist and calls .tostring method on all employee object and then prints the returned string to console.
         for (Employee employee : HR.employeeList) {
             System.out.println(employee);
         }
     }
     //Removes an employeeobject from the arraylist.
-    static void removeEmployee(){
+    private static void removeEmployee(){
         System.out.println("Id of employee to remove: ");
         int id = sc.nextInt();
         //Calls removeEmployee method of hr object.
@@ -204,7 +204,7 @@ public class EmployeeManager {
         }
     }
     //Updates the name attribute of an employee.
-    static void updateNameOfEmployee(){
+    private static void updateNameOfEmployee(){
         System.out.println("Id of employee to update: ");
         int id = sc.nextInt();
         sc.nextLine();
@@ -218,7 +218,7 @@ public class EmployeeManager {
         }
     }
     //Updates the birthday attribute of an employee.
-    static void updateBirthdateOfEmployee(){
+    private static void updateBirthdateOfEmployee(){
         System.out.println("Id of employee to update: ");
         int id = sc.nextInt();
         sc.nextLine();
@@ -232,7 +232,7 @@ public class EmployeeManager {
         }
     }
     //Updates the department of an employee.
-    static void updateDepartmentOfEmployee(){
+    private static void updateDepartmentOfEmployee(){
         System.out.println("Id of employee to update: ");
         int id = sc.nextInt();
         sc.nextLine();
@@ -249,7 +249,7 @@ public class EmployeeManager {
         }
     }
     //Updates the salary attribute of the employee.
-    static void updateSalaryOfEmployee(){
+    private static void updateSalaryOfEmployee(){
         System.out.println("Id of employee to update: ");
         int id = sc.nextInt();
         sc.nextLine();
@@ -263,7 +263,7 @@ public class EmployeeManager {
         }
     }
     //Search employee by name
-    static void searchEmployeeByName(){
+    private static void searchEmployeeByName(){
         sc.nextLine();
         System.out.println("Name: ");
         String name = sc.nextLine();
@@ -280,7 +280,7 @@ public class EmployeeManager {
 
     }
     //Search employee by Id
-    static void searchEmployeeById(){
+    private static void searchEmployeeById(){
         sc.nextLine();
         System.out.print("Id: ");
         int id = sc.nextInt();
@@ -294,7 +294,7 @@ public class EmployeeManager {
 
     }
     //Search employee by department
-    static void searchEmployeeByDepartment(){
+    private static void searchEmployeeByDepartment(){
         sc.nextLine();
         System.out.println("Department?\n" +
                 "1. DevOps\n" +
@@ -317,7 +317,7 @@ public class EmployeeManager {
                 break;
         }
         //If arraylist > 0 print the arraylist.
-        if(foundEmployees.size() > 0){
+        if(foundEmployees != null && foundEmployees.size() > 0){
             for (Employee foundEmployee : foundEmployees) {
                 System.out.println("Found employee: " + foundEmployee.getName());
             }
@@ -327,34 +327,34 @@ public class EmployeeManager {
 
     }
     //Prints average monthly wage without bonuses.
-    static void calculateSalary(){
+    private static void calculateSalary(){
         System.out.println("Average monthly wage (without bonus): " + (int)hr.calculateAverageWage() + "kr");
     }
     //Prints maximum salary in the company.
-    static void getMaxSalary(){
+    private static void getMaxSalary(){
         System.out.println("Max salary is: " + (int)hr.maxSalary() + "kr");
     }
     //Prints minimum salary in the company.
-    static void getMinSalary(){
+    private static void getMinSalary(){
         System.out.println("Min salary is: " + (int)hr.minSalary() + "kr");
     }
     //Prints total bonus in the company
-    static void getTotalBonus(){
+    private static void getTotalBonus(){
         System.out.println("Total bonus: " + (int) hr.calculateTotalBonus() + "kr");
     }
     //Prints gender distribution in the company.
-    static void calculateGenderPercentage(){
+    private static void calculateGenderPercentage(){
         System.out.println("Women: " + (int)hr.calculateGenderPercentage() + "% Men: " + (100-(int)hr.calculateGenderPercentage() + "%"));
     }
     //Prints gender distribution per department in the company.
-    static void calculateGenderPercentagePerDepartment(){
+    private static void calculateGenderPercentagePerDepartment(){
         ArrayList<String> genderList = hr.calculateGenderPercentagePerDepartment();
         for (String s :genderList) {
             System.out.println(s);
         }
     }
     //Registers a new employee.
-    static void registerEmployee(Employee employee){
+    private static void registerEmployee(Employee employee){
         if(hr.registerEmployee(employee)){
             System.out.println("Successfully registered new employee.");
         }else{
