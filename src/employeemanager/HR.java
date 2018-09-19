@@ -186,7 +186,7 @@ public class HR {
     //Calculate and return total gender distribution.
     double calculateGenderPercentage(){
         try{
-            return ((Tester.nWomen + Developer.nWomen + DevOps.nWomen) / (double)employeeList.size() * 100);
+            return ((Tester.getnWomen() + Developer.getnWomen() + DevOps.getnWomen()) / (double)employeeList.size() * 100);
         }
         catch(ArithmeticException ex){
             return 0;
@@ -203,7 +203,7 @@ public class HR {
     //Calculates and returns gender distribution in test department.
     double genderPercentageTester(){
         try{
-            return (Tester.nMen / (double)Tester.getTotalTesters() * 100);
+            return (Tester.getnMen() / (double)Tester.getTotalTesters() * 100);
         } catch (ArithmeticException ex){
             return 0;
         }
@@ -211,7 +211,7 @@ public class HR {
     //Calculates and returns gender distribution in development department.
     double genderPercentageDeveloper(){
         try{
-            return (Developer.nMen / (double)Developer.getTotalOfDevelopers() * 100);
+            return (Developer.getnMen() / (double)Developer.getTotalOfDevelopers() * 100);
         } catch (ArithmeticException ex){
             return 0;
         }
@@ -219,7 +219,7 @@ public class HR {
     //Calculates and returns gender distribution in devops department.
     double genderPercentageDevOps(){
         try{
-            return (DevOps.nMen / (double)DevOps.getTotalOfDevOps() * 100);
+            return (DevOps.getnMen() / (double)DevOps.getTotalOfDevOps() * 100);
         } catch (ArithmeticException ex){
             return 0;
         }

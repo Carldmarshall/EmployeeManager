@@ -4,8 +4,8 @@ package employeemanager;
 //Start of class
 public class Tester extends Employee{
     private final int TESTER_BONUS = 1207;
-    public static int nMen = 0;
-    public static int nWomen = 0;
+    private static int nMen = 0;
+    private static int nWomen = 0;
     public Tester(String name, int age, double hourlyRate, char gender, String birthDate){
         super(name, age, hourlyRate, gender, birthDate);
         manOrWoman(gender);
@@ -14,6 +14,12 @@ public class Tester extends Employee{
     //Getters
     public static int getTotalTesters(){
         return nMen + nWomen;
+    }
+    public static int getnMen() {
+        return nMen;
+    }
+    public static int getnWomen() {
+        return nWomen;
     }
 
     //Override methods

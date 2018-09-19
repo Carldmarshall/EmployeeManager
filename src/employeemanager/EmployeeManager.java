@@ -1,9 +1,6 @@
 /*
 * Labb 2 - ITHS Javautvecklare 2018 - Stockholm
 * Made by: Pontus Paulsson & Carl M
-*
-*
-*
 */
 
 
@@ -32,7 +29,6 @@ public class EmployeeManager {
         registerEmployee(new Developer("Developer1", 1, 132, 'F',  "1990-07-20"));
         registerEmployee(new Developer("Developer2", 1, 151, 'M',  "1990-07-20"));
         registerEmployee(new Developer("Developer3", 1, 156, 'M',  "1990-07-20"));
-
         displayAllEmployees();
         //Prints main menu
         while(running){
@@ -52,6 +48,7 @@ public class EmployeeManager {
                     break;
                 case 0:
                     running = false;
+                    break;
                 default:
                     System.out.println("Wrong input!");
                     break;
@@ -59,93 +56,101 @@ public class EmployeeManager {
         }
         System.out.println("Exiting application...");
     }
-    //Displays menu for employeemanagement
+    //Displays menu for employee management
     private static void employeeManagement(){
-
-        System.out.println("What do you want do to?\n" +
-                "1. Register employee.\n" +
-                "2. Delete employee.\n" +
-                "3. Update name of employee.\n" +
-                "4. Update the birthdate of employee.\n" +
-                "5. Update the department of employee.\n" +
-                "6. Update Salary of employee.\n" +
-                "7. Search employee by name.\n" +
-                "8. Search employee number.\n" +
-                "9. Search employee by department.\n" +
-                "10. Display all employees.\n" +
-                "0. Back to main menu.\n");
-        System.out.print("Choice: ");
-        int choice = sc.nextInt();
-        switch (choice){
-            case 1:
-                createNewEmployee();
-                break;
-            case 2:
-                removeEmployee();
-                break;
-            case 3:
-                updateNameOfEmployee();
-                break;
-            case 4:
-                updateBirthdateOfEmployee();
-                break;
-            case 5:
-                updateDepartmentOfEmployee();
-                break;
-            case 6:
-                updateSalaryOfEmployee();
-                break;
-            case 7:
-                searchEmployeeByName();
-                break;
-            case 8:
-                searchEmployeeById();
-                break;
-            case 9:
-                searchEmployeeByDepartment();
-                break;
-            case 10:
-                displayAllEmployees();
-                break;
-            default:
-                break;
-        }
+        boolean running = true;
+        while (running) {
+            System.out.println("--------------------------------------------");
+            System.out.println("MANAGEMENT - What do you want do to?\n" +
+                    "1. Register employee.\n" +
+                    "2. Delete employee.\n" +
+                    "3. Update name of employee.\n" +
+                    "4. Update the birthdate of employee.\n" +
+                    "5. Update the department of employee.\n" +
+                    "6. Update Salary of employee.\n" +
+                    "7. Search employee by name.\n" +
+                    "8. Search employee number.\n" +
+                    "9. Search employee by department.\n" +
+                    "10. Display all employees.\n" +
+                    "0. Back to main menu.");
+            System.out.print("Choice: ");
+            int choice = sc.nextInt();
+            switch (choice){
+                case 1:
+                    createNewEmployee();
+                    break;
+                case 2:
+                    removeEmployee();
+                    break;
+                case 3:
+                    updateNameOfEmployee();
+                    break;
+                case 4:
+                    updateBirthdateOfEmployee();
+                    break;
+                case 5:
+                    updateDepartmentOfEmployee();
+                    break;
+                case 6:
+                    updateSalaryOfEmployee();
+                    break;
+                case 7:
+                    searchEmployeeByName();
+                    break;
+                case 8:
+                    searchEmployeeById();
+                    break;
+                case 9:
+                    searchEmployeeByDepartment();
+                    break;
+                case 10:
+                    displayAllEmployees();
+                    break;
+                default:
+                    running = false;
+                    break;
+            } //end of switch
+        } // end of while
     }
-    //Displays menu for employeestatistics
+    //Displays menu for employee statistics
     private static void employeeStatitics(){
-        System.out.println("What do you want do to?\n" +
-                "1. Average wage at the company.\n" +
-                "2. Maximum salary in the company.\n" +
-                "3. Minimum salary in the company.\n" +
-                "4. Total bonus.\n" +
-                "5. Total genderdistribution in the company.\n" +
-                "6. Genderdistribution in departments.\n" +
-                "0. Back to main menu.\n");
-        System.out.print("Choice: ");
-        int choice = sc.nextInt();
-        switch (choice){
-            case 1:
-                calculateSalary();
-                break;
-            case 2:
-                getMaxSalary();
-                break;
-            case 3:
-                getMinSalary();
-                break;
-            case 4:
-                getTotalBonus();
-                break;
-            case 5:
-                calculateGenderPercentage();
-                break;
-            case 6:
-                calculateGenderPercentagePerDepartment();
-                break;
-            case 0:
-                break;
-
-        }
+        boolean running = true;
+        while(running){
+            System.out.println("--------------------------------------------");
+            System.out.println("STATISTICS - What do you want do to?\n" +
+                    "1. Average wage at the company.\n" +
+                    "2. Maximum salary in the company.\n" +
+                    "3. Minimum salary in the company.\n" +
+                    "4. Total bonus.\n" +
+                    "5. Total genderdistribution in the company.\n" +
+                    "6. Genderdistribution in departments.\n" +
+                    "0. Back to main menu.");
+            System.out.print("Choice: ");
+            int choice = sc.nextInt();
+            switch (choice){
+                case 1:
+                    calculateSalary();
+                    break;
+                case 2:
+                    getMaxSalary();
+                    break;
+                case 3:
+                    getMinSalary();
+                    break;
+                case 4:
+                    getTotalBonus();
+                    break;
+                case 5:
+                    calculateGenderPercentage();
+                    break;
+                case 6:
+                    calculateGenderPercentagePerDepartment();
+                    break;
+                case 0:
+                    running = false;
+                    break;
+            } //end of switch
+        } //end of while
     }
     //Calls the registerEmployee method with a new Employee object.
     private static void createNewEmployee(){
@@ -192,7 +197,7 @@ public class EmployeeManager {
             System.out.println(employee);
         }
     }
-    //Removes an employeeobject from the arraylist.
+    //Removes an employee object from the arraylist.
     private static void removeEmployee(){
         System.out.println("Id of employee to remove: ");
         int id = sc.nextInt();
