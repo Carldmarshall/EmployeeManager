@@ -60,7 +60,7 @@ public abstract class Employee {
     //Override methods
     @Override
     public String toString() {
-        return "ID: " + id + " Name: " + name + " Birthdate: " + birthDate.toString() + " Bonus: " +  (int)getBonus() + " Salary: " + calculateSalary();
+        return "[" + id + "] " + name + " [Salary] " + (int)calculateSalary()  + "kr [Bonus] " + (int)getBonus() + "kr";
     }
 
     //Abstract mehods

@@ -3,7 +3,7 @@ package employeemanager;
 
 //Start of class
 public class Developer extends Employee{
-    private final int DEV_BONUS = 1500;
+    private final int BONUS = 1500;
     private static int nMen = 0;
     private static int nWomen = 0;
     public Developer(String name, int age, double hourlyRate, char gender, String birthDate){
@@ -25,7 +25,7 @@ public class Developer extends Employee{
     //Override methods
     @Override
     public double getBonus() {
-        return super.calculateSalary()*7/100+DEV_BONUS;
+        return super.calculateSalary()*7/100+BONUS;
     }
     @Override
     public String toString() {

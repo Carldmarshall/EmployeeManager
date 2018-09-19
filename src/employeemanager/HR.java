@@ -224,4 +224,16 @@ public class HR {
             return 0;
         }
     }
+    //Debug
+    void debug(){
+        registerEmployee(new DevOps("Botany Stinkyrash", 1, 120, 'F',  "1990-07-20"));
+        registerEmployee(new DevOps("Bombadil Cramplesnutch", 1, 112, 'M', "1990-07-20"));
+        registerEmployee(new DevOps("Rinkydink Anglerfish", 1, 84, 'M', "1990-07-20"));
+        registerEmployee(new Tester("Baseballmitt Concubine", 1, 122, 'F',  "1990-07-20"));
+        registerEmployee(new Tester("Botany Cankersore", 1, 152, 'M',  "1990-07-20"));
+        registerEmployee(new Tester("Tiddleywomp Chesterfield", 1, 321, 'M',  "1990-07-20"));
+        registerEmployee(new Developer("Bandicoot Crackerjack", 1, 132, 'F',  "1990-07-20"));
+        registerEmployee(new Developer("Buckyball Bonaparte", 1, 151, 'M',  "1990-07-20"));
+        registerEmployee(new Developer("Burlington Lingerie", 1, 156, 'M',  "1990-07-20"));
+    }
 }

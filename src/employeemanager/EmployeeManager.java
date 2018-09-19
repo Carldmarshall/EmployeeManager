@@ -19,18 +19,12 @@ public class EmployeeManager {
     private static Scanner sc = new Scanner(System.in);
     //Program starting point.
     public static void main(String[] args) {
+        hr.debug(); //adds "dummy" people to the employeeList
+        mainMenu(); //shows mainmenu
+    }
+    //Prints main menu
+    private static void mainMenu(){
         boolean running = true;
-        registerEmployee(new DevOps("DevOps1", 1, 120, 'F',  "1990-07-20"));
-        registerEmployee(new DevOps("DevOps2", 1, 112, 'M', "1990-07-20"));
-        registerEmployee(new DevOps("DevOps3", 1, 84, 'M', "1990-07-20"));
-        registerEmployee(new Tester("Tester1", 1, 122, 'F',  "1990-07-20"));
-        registerEmployee(new Tester("Tester2", 1, 152, 'M',  "1990-07-20"));
-        registerEmployee(new Tester("Tester3", 1, 321, 'M',  "1990-07-20"));
-        registerEmployee(new Developer("Developer1", 1, 132, 'F',  "1990-07-20"));
-        registerEmployee(new Developer("Developer2", 1, 151, 'M',  "1990-07-20"));
-        registerEmployee(new Developer("Developer3", 1, 156, 'M',  "1990-07-20"));
-        displayAllEmployees();
-        //Prints main menu
         while(running){
             System.out.println("What do you want do to?\n" +
                     "1. Enter Employee management.\n" +
