@@ -63,31 +63,53 @@ public class HR {
     //Updates department of employee by creating a new employee object and deleting the old one from the arraylist.
     boolean updateEmployeeDepartment(int id, int department){
         try{
-            for (Employee employee : employeeList) {
-                if(employee.getId() == id){
-                    switch (department){
+//            for (Employee employee : employeeList) {
+////                if(employee.getId() == id){
+////                    switch (department){
+////                        //1 for devops
+////                        case 1:
+////                            employee =
+////                            removeEmployee(id);
+////                            employee.setId(id);
+////                        //2 for Test
+////                        case 2:
+////                            employee = new Tester(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
+////                            removeEmployee(id);
+////                            employee.setId(id);
+////                            break;
+////                        //3 for Development
+////                        case 3:
+////                            employee = new Developer(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
+////                            removeEmployee(id);
+////                            employee.setId(id);
+////                            break;
+////                    }
+////
+////                    return true;
+////                }
+////
+            for(int i = 0; i < employeeList.size(); i++){
+                if(employeeList.get(i).getId() == id){
+                    switch(department){
                         //1 for devops
                         case 1:
-                            employee = new DevOps(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
-                            removeEmployee(id);
-                            employee.setId(id);
-                        //2 for Test
-                        case 2:
-                            employee = new Tester(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
-                            removeEmployee(id);
-                            employee.setId(id);
+                            employeeList.set(i, new DevOps(employeeList.get(i).getName(), employeeList.get(i).getAge(), employeeList.get(i).getHourlyRate(), employeeList.get(i).getGender(), employeeList.get(i).getBirthDate()));
+                            employeeList.get(i).setId(id);
                             break;
-                        //3 for Development
+                        //2 for tester
+                        case 2:
+                            employeeList.set(i, new Tester(employeeList.get(i).getName(), employeeList.get(i).getAge(), employeeList.get(i).getHourlyRate(), employeeList.get(i).getGender(), employeeList.get(i).getBirthDate()));
+                            employeeList.get(i).setId(id);
+                            break;
+                        //3 for developer
                         case 3:
-                            employee = new Developer(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
-                            removeEmployee(id);
-                            employee.setId(id);
+                            employeeList.set(i, new Developer(employeeList.get(i).getName(), employeeList.get(i).getAge(), employeeList.get(i).getHourlyRate(), employeeList.get(i).getGender(), employeeList.get(i).getBirthDate()));
+                            employeeList.get(i).setId(id);
                             break;
                     }
-
-                    return true;
                 }
             }
+            return true;
         }catch (Exception ex){
             System.out.println("Exception caught: " + ex);
         }

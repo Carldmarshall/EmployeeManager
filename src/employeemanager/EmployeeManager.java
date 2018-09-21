@@ -166,6 +166,12 @@ public class EmployeeManager {
         sc.nextLine();
         System.out.print("Gender (M / F): ");
         String gender = sc.nextLine();
+        //While loop to make sure user enters correct gender.
+        while(!gender.equals("M") && !gender.equals("F")){
+            System.out.println("Wrong input. Please try again.");
+            System.out.print("Gender (M / F): ");
+            gender = sc.nextLine();
+        } // end of while
         System.out.print("Date (YYYY-MM-DD: ");
         String birthDate = sc.nextLine();
         //Switch-case to handle the different subclasses (departments)
@@ -235,10 +241,11 @@ public class EmployeeManager {
         System.out.println("Id of employee to update: ");
         int id = sc.nextInt();
         sc.nextLine();
-        System.out.println("Department?\n" +
+        System.out.print("Department?\n" +
                 "1. DevOps\n" +
                 "2. Test\n" +
                 "3. Development");
+        System.out.println("Choice: ");
         int department = sc.nextInt();
         //Calls updateEmployeeDepartment in HR class.
         if(hr.updateEmployeeDepartment(id, department)){
