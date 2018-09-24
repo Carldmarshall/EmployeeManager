@@ -37,7 +37,7 @@ public class Tester extends Employee{
     }
     @Override
     public double getBonus() {
-        return super.calculateSalary()*7/100+BONUS;
+        return (super.calculateSalary()/100)+BONUS;
     }
 
     //Other methods

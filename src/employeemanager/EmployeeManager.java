@@ -154,6 +154,7 @@ public class EmployeeManager {
                 "1. DevOps\n" +
                 "2. Test\n" +
                 "3. Development");
+        System.out.print("Choice: ");
         int department = sc.nextInt(); // lägg till kontroll
         sc.nextLine();
         //Input info about new employee
@@ -193,8 +194,8 @@ public class EmployeeManager {
     }
     //Display all employees
     private static void displayAllEmployees(){
-        //Sort ths employeelist based on employeeId using SortEmployees class (that implements interface Comparator<Employee>).
-        //Collections.sort(HR.employeeList, new SortEmployees());
+        //Sort the employeelist based on employeeId using SortEmployees class (that implements interface Comparator<Employee>).
+        Collections.sort(HR.employeeList, new SortEmployees());
         //Loops thru arraylist and calls .tostring method on all employee object and then prints the returned string to console.
         for (Employee employee : HR.employeeList) {
             System.out.println(employee);
@@ -244,11 +245,11 @@ public class EmployeeManager {
         System.out.println("Id of employee to update: ");
         int id = sc.nextInt();
         sc.nextLine();
-        System.out.print("Department?\n" +
+        System.out.println("Department?\n" +
                 "1. DevOps\n" +
                 "2. Test\n" +
                 "3. Development");
-        System.out.println("Choice: ");
+        System.out.print("Choice: ");
         int department = sc.nextInt();
         //Calls updateEmployeeDepartment in HR class.
         if(hr.updateEmployeeDepartment(id, department)){

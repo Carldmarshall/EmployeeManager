@@ -25,7 +25,7 @@ public class Developer extends Employee{
     //Override methods
     @Override
     public double getBonus() {
-        return super.calculateSalary()*7/100+BONUS;
+        return (super.calculateSalary()/100)+BONUS;
     }
     @Override
     public String toString() {
