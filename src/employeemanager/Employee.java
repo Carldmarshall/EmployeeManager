@@ -72,4 +72,9 @@ public abstract class Employee {
         return getHourlyRate()*MONTHLY_HOURS;
     }
 
+    //Comparator
+    int compareTo(Employee e1, Employee e2){
+        return e1.getAge() - e2.getAge();
+    }
+
 }

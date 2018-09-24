@@ -60,34 +60,9 @@ public class HR {
         }
         return false;
     }
-    //Updates department of employee by creating a new employee object and deleting the old one from the arraylist.
+    //Updates department of employee by creating a new employee object and sets the old Id to the new object.
     boolean updateEmployeeDepartment(int id, int department){
         try{
-//            for (Employee employee : employeeList) {
-////                if(employee.getId() == id){
-////                    switch (department){
-////                        //1 for devops
-////                        case 1:
-////                            employee =
-////                            removeEmployee(id);
-////                            employee.setId(id);
-////                        //2 for Test
-////                        case 2:
-////                            employee = new Tester(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
-////                            removeEmployee(id);
-////                            employee.setId(id);
-////                            break;
-////                        //3 for Development
-////                        case 3:
-////                            employee = new Developer(employee.getName(), employee.getAge(), employee.getHourlyRate(), employee.getGender(), employee.getBirthDate());
-////                            removeEmployee(id);
-////                            employee.setId(id);
-////                            break;
-////                    }
-////
-////                    return true;
-////                }
-////
             for(int i = 0; i < employeeList.size(); i++){
                 if(employeeList.get(i).getId() == id){
                     switch(department){

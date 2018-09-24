@@ -9,6 +9,7 @@ package employeemanager;
 
 //Import
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 //Start of class
@@ -192,6 +193,8 @@ public class EmployeeManager {
     }
     //Display all employees
     private static void displayAllEmployees(){
+        //Sort ths employeelist based on employeeId using SortEmployees class (that implements interface Comparator<Employee>).
+        //Collections.sort(HR.employeeList, new SortEmployees());
         //Loops thru arraylist and calls .tostring method on all employee object and then prints the returned string to console.
         for (Employee employee : HR.employeeList) {
             System.out.println(employee);
